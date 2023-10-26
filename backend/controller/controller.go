@@ -40,7 +40,7 @@ func init() {
 	collection = client.Database(dbName).Collection(colName)
 
 	//if collection instance is ready
-	fmt.Println("Colletion reference is ready")
+	fmt.Println("Collection reference is ready")
 }
 
 // MongoDB helper methods
@@ -114,8 +114,14 @@ func getAllPosts() []primitive.M {
 }
 
 // Actual controllers - file
+// enabling cors for this origin
+// func enableCors(w *http.ResponseWriter) {
+// 	(*w).Header().Set("Access-Control-Allow-Origin", "*")
+// }
+
 // get all posts
 func GetAllPosts(w http.ResponseWriter, r *http.Request) {
+	//enableCors(&w)
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	allPosts := getAllPosts()
 	json.NewEncoder(w).Encode(allPosts)
@@ -124,41 +130,55 @@ func GetAllPosts(w http.ResponseWriter, r *http.Request) {
 // Create Post
 
 func InsertOnePost(w http.ResponseWriter, r *http.Request) {
+	//enableCors(&w)
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "POST")
-
+	//create our post model
 	var post model.BlogPost
+	//decode our recieved post from json
 	_ = json.NewDecoder(r.Body).Decode(&post)
 	insertOnePost(post)
+	//send back json response of post inserted
 	json.NewEncoder(w).Encode(post)
 }
 
 // Update Post
 func UpdateOnePost(w http.ResponseWriter, r *http.Request) {
+	//enableCors(&w)
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "PUT")
+	//Decode "body" from updated post
+	var post model.BlogPost
+	_ = json.NewDecoder(r.Body).Decode(&post)
+	//get our pararmeters from mux router (this is to get our ID)
 	params := mux.Vars(r)
-	updateOnePost(params["id"], params["body"])
+	fmt.Println(post.Body)
+	fmt.Println(params["id"])
+	updateOnePost(params["id"], post.Body)
+	// send back a json response of id updated, and update
 	encoder := json.NewEncoder(w)
 	encoder.Encode(params["id"])
-	encoder.Encode(params["body"])
-
+	encoder.Encode(post.Body)
 }
 
 // Delete a post
 func DeleteOnePost(w http.ResponseWriter, r *http.Request) {
+	//enableCors(&w)
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
 	params := mux.Vars(r)
 	deleteOnePost(params["id"])
+	//send back a json response of id
 	json.NewEncoder(w).Encode(params["id"])
 }
 
 // delete All posts
 func DeleteAllPosts(w http.ResponseWriter, r *http.Request) {
+	//enableCors(&w)
 	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
 	w.Header().Set("Allow-Control-Allow-Methods", "DELETE")
 
 	count := deleteAllPosts()
+	//send back a json representation of posts deleted
 	json.NewEncoder(w).Encode(count)
 }

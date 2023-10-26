@@ -50,8 +50,8 @@ func Router() *mux.Router {
 	//router.HandleFunc("/ws", serveWs)
 	router.HandleFunc("/api/posts", controller.GetAllPosts).Methods("GET")
 	router.HandleFunc("/api/post", controller.InsertOnePost).Methods("POST")
-	router.HandleFunc("/api/post{id}", controller.UpdateOnePost).Methods("PUT")
-	router.HandleFunc("/api/post{id}", controller.DeleteOnePost).Methods("DELETE")
+	router.HandleFunc("/api/post/{id}", controller.UpdateOnePost).Methods("PUT")
+	router.HandleFunc("/api/post/{id}", controller.DeleteOnePost).Methods("DELETE")
 	router.HandleFunc("/api/deleteallpost", controller.DeleteAllPosts).Methods("DELETE")
 
 	return router
