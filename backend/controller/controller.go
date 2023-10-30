@@ -54,13 +54,13 @@ func insertOnePost(post model.BlogPost) {
 }
 
 // Update One Post
-func updateOnePost(postID string, body string) {
+func updateOnePost(postID string, body string, title string) {
 	id, err := primitive.ObjectIDFromHex(postID)
 	if err != nil {
 		log.Fatal(err)
 	}
 	filter := bson.M{"_id": id}
-	update := bson.M{"$set": bson.M{"body": body}}
+	update := bson.M{"$set": bson.M{"body": body, "title": title}}
 
 	res, err := collection.UpdateOne(context.Background(), filter, update)
 	if err != nil {
@@ -94,7 +94,7 @@ func deleteAllPosts() int64 {
 	return deleteResult.DeletedCount
 }
 
-// get All movies
+// get All posts
 func getAllPosts() []primitive.M {
 	cur, err := collection.Find(context.Background(), bson.D{{}})
 	if err != nil {
@@ -152,9 +152,9 @@ func UpdateOnePost(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewDecoder(r.Body).Decode(&post)
 	//get our pararmeters from mux router (this is to get our ID)
 	params := mux.Vars(r)
-	fmt.Println(post.Body)
-	fmt.Println(params["id"])
-	updateOnePost(params["id"], post.Body)
+	//fmt.Println(post.Body)
+	//fmt.Println(params["id"])
+	updateOnePost(params["id"], post.Body, post.Title)
 	// send back a json response of id updated, and update
 	encoder := json.NewEncoder(w)
 	encoder.Encode(params["id"])

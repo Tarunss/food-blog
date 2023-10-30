@@ -4,9 +4,10 @@ import Header from "./components/Header";
 import Posts from "./components/Posts"
 import index from './index';
 function App() {
-  //our get posts useState
+  // Our useStates
   const [posts, setPosts] = useState([])
-  //our useEffect for our posts
+
+  //our useEffects
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -33,13 +34,7 @@ function App() {
     <div>
       <h1><Header></Header>
       </h1>
-      <ul>
-        {posts.map((post) => (
-          <li className="post" key={post._id}>
-            <label>{post.body}</label>
-          </li>
-        ))}
-      </ul>
+      <Posts posts={posts}></Posts>
     </div >
   )
 }

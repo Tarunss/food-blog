@@ -1,13 +1,19 @@
 import React from 'react';
 import './Posts.css';
 
-const Posts = ({ post }) => {
+const Posts = ({ posts }) => {
     return (
-        <article className="post">
-            <h2>
-                {post.body}
-            </h2>
-        </article>
+        <ul>
+            {posts.map((post) => (
+                <li className="posts" key={post._id}>
+                    <ul className="post">
+                        <li className="postTitle">{post.title}</li>
+                        <li className="postBody">{post.body}</li>
+                        <li className="postDate">{post.date}</li>
+                    </ul>
+                </li>
+            ))}
+        </ul>
     )
 }
 
