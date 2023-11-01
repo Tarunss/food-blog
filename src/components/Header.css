@@ -1,19 +1,11 @@
 .header {
-    background-color: #3b1538;
-    width: 100%;
-    margin: 0;
-    padding: 10px;
-    color: white;
-    height: 10;
-    position: absolute;
-    top: 0;
-    right: auto;
-    left: auto;
-    font-size: 29px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    bottom: 300px;
+    left: 50px
 }
 
 h2 {
-    margin: 0;
-    padding: 0;
     text-align: center;
 }

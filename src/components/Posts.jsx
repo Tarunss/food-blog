@@ -3,17 +3,25 @@ import './Posts.css';
 
 const Posts = ({ posts }) => {
     return (
-        <ul>
-            {posts.map((post) => (
-                <li className="posts" key={post._id}>
-                    <ul className="post">
-                        <li className="postTitle">{post.title}</li>
-                        <li className="postBody">{post.body}</li>
-                        <li className="postDate">{post.date}</li>
-                    </ul>
-                </li>
-            ))}
-        </ul>
+        <div className="postListDiv">
+            <ul className="postList">
+                {posts.map((post) => (
+                    <li className="posts" key={post._id}>
+                        <div className="postDiv">
+                            <article className="post">
+                                <section className="titleSection">
+                                    <p className="postDate">{post.date}</p>
+                                    <h1 className="postTitle">{post.title} </h1>
+                                    <p className="postBody">{post.body}</p>
+
+
+                                </section>
+                            </article>
+                        </div>
+                    </li>
+                ))}
+            </ul>
+        </div>
     )
 }
 

@@ -3,9 +3,9 @@ import "./Header.css";
 
 const Header = () => (
     <div className="header">
-        <h2>
+        <h1>
             Food Blog
-        </h2>
+        </h1>
     </div>
 );
 export default Header;

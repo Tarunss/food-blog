@@ -31,9 +31,9 @@ function App() {
   }, [])
 
   return (
-    <div>
-      <h1><Header></Header>
-      </h1>
+    <div className="appDiv">
+      <Header></Header>
+
       <Posts posts={posts}></Posts>
     </div >
   )
