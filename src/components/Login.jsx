@@ -7,25 +7,27 @@ async function loginUser(credentials) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
+
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json).then(console.log(data))
+        .then(data => data.json).then(console.log(data.json))
 }
-const handleSubmit = async e => {
-    e.preventDefault();
-    console.log(e)
-    const token = await loginUser({
-        username,
-        password
-    });
-    setToken(token);
-}
+
 
 export default function Login({ setToken }) {
     //useStates
     const [username, setUserName] = useState([]);
     const [password, setPassWord] = useState([]);
+    const handleSubmit = async e => {
+        e.preventDefault();
+        console.log(e)
+        const token = await loginUser({
+            username,
+            password
+        });
+        setToken(token);
+    }
     return (
         <div className="login-wrapper:">
             <h1>Please log in</h1>
