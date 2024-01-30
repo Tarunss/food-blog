@@ -11,7 +11,7 @@ async function loginUser(credentials) {
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json).then(console.log(data.json))
+        .then(data => data.json)
 }
 
 
