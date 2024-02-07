@@ -1,6 +1,7 @@
 import { React, useState } from 'react'
 import './Login.css'
 import PropTypes from 'prop-types'
+import bcrypt from 'bcryptjs'
 //POST request function
 async function loginUser(credentials) {
     return fetch('http://localhost:8081/admin', {
@@ -39,7 +40,7 @@ export default function Login({ setToken }) {
                 </label>
                 <label>
                     <p>Password:</p>
-                    <input type="password" onChange={e => setPassWord(e.target.value)} />
+                    <input type="password" onChange={e => setPassWord(bcrypt.hashSync(e.target.value, 10))} />
 
                 </label>
                 <div>
