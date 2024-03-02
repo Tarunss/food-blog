@@ -1,9 +1,8 @@
 .header {
     display: flex;
     position: relative;
-    justify-content: center;
-    bottom: 300px;
-    left: 50px
+    justify-content: left;
+    left: 7%
 }
 
 h2 {

@@ -8,11 +8,13 @@ async function loginUser(credentials) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
-
         },
         body: JSON.stringify(credentials)
     })
-        .then(data => data.json)
+        .then(data => {
+            console.log(data);
+            return data.json()
+        })
 }
 
 
@@ -22,15 +24,16 @@ export default function Login({ setToken }) {
     const [password, setPassWord] = useState([]);
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(e)
+        //console.log(e)
         const token = await loginUser({
             username,
             password
         });
+        //console.log(token);
         setToken(token);
     }
     return (
-        <div className="login-wrapper:">
+        <div className="login-wrapper">
             <h1>Please log in</h1>
             <form onSubmit={handleSubmit}>
                 <label>
@@ -40,10 +43,10 @@ export default function Login({ setToken }) {
                 </label>
                 <label>
                     <p>Password:</p>
-                    <input type="password" onChange={e => setPassWord(bcrypt.hashSync(e.target.value, 10))} />
+                    <input type="password" onChange={e => setPassWord(e.target.value)} />
 
                 </label>
-                <div>
+                <div className="submitButton">ß
                     <button type="submit">Submit</button>
                 </div>
             </form>

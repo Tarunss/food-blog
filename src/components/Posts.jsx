@@ -1,28 +1,25 @@
 import React from 'react';
 import './Posts.css';
 
-const Posts = ({ posts }) => {
-    return (
-        <div className="postListDiv">
-            <ul className="postList">
-                {posts.map((post) => (
-                    <li className="posts" key={post._id}>
-                        <div className="postDiv">
-                            <article className="post">
-                                <section className="titleSection">
-                                    <p className="postDate">{post.date}</p>
-                                    <h1 className="postTitle">{post.title} </h1>
-                                    <p className="postBody">{post.body}</p>
+const Posts = ({ posts }) => (
+    <div className="postListDiv">
+        <ul className="postList">
+            {posts.map((post) => (
+                <li className="posts" key={post._id}>
+                    <div className="postDiv">
+                        <article className="post">
+                            <section className="titleSection">
+                                <p className="postDate">{post.date}</p>
+                                <h1 className="postTitle">{post.title} </h1>
+                                <p className="postBody">{post.body}</p>
+                            </section>
+                        </article>
+                    </div>
+                </li>
+            ))}
+        </ul>
+    </div>
+)
 
-
-                                </section>
-                            </article>
-                        </div>
-                    </li>
-                ))}
-            </ul>
-        </div>
-    )
-}
 
 export default Posts
