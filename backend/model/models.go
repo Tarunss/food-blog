@@ -10,3 +10,8 @@ type BlogPost struct {
 	Body  string             `json:"body,omitempty"`
 	Date  string             `json:"date,omitempty"`
 }
+
+type UsePass struct {
+	Username string `json:"username,omitempty"`
+	Password string `json:"password,omitempty"`
+}

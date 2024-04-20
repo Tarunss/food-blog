@@ -182,3 +182,22 @@ func DeleteAllPosts(w http.ResponseWriter, r *http.Request) {
 	//send back a json representation of posts deleted
 	json.NewEncoder(w).Encode(count)
 }
+
+// GET request to return the token
+//func GetToken(w http.ResponseWriter, r *http.Request) {
+
+//}
+
+// POST request when user submits password
+func PostToken(w http.ResponseWriter, r *http.Request) {
+	// set our headers
+	w.Header().Set("Content-Type", "application/x-www-form-urlencode")
+	w.Header().Set("Allow-Control-Allow-Methods", "POST")
+	// Decode the post request
+	var usepass model.UsePass
+	_ = json.NewDecoder(r.Body).Decode(&usepass)
+	// check to see if username and password match
+
+	// send our token through
+	json.NewEncoder(w).Encode("token:123")
+}

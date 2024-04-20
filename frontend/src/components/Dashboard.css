@@ -1,0 +1,48 @@
+.Dashboard {
+    padding-left: 5%;
+    position: absolute;
+}
+
+.postList {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    -ms-flex-align: start;
+}
+
+.dashboardDiv {
+    position: absolute;
+}
+
+.buttonDiv {
+    position: relative;
+    display: flex;
+    top: 20%;
+}
+
+.buttons {
+    position: relative;
+    display: flex;
+
+}
+
+.newButton {
+    position: relative;
+    display: flex;
+    left: 500%
+}
+
+.modal {
+    position: relative;
+    left: -5%;
+}
+
+.fade.modal-backdrop.show {
+    display: flex;
+    justify-content: center;
+}
+
+.fade.modal.show {
+    display: flex;
+    justify-content: center;
+}

@@ -48,6 +48,7 @@ import (
 func Router() *mux.Router {
 	router := mux.NewRouter()
 	//router.HandleFunc("/ws", serveWs)
+	router.HandleFunc("/api/login", controller.PostToken).Methods("POST")
 	router.HandleFunc("/api/posts", controller.GetAllPosts).Methods("GET")
 	router.HandleFunc("/api/post", controller.InsertOnePost).Methods("POST")
 	router.HandleFunc("/api/post/{id}", controller.UpdateOnePost).Methods("PUT")
