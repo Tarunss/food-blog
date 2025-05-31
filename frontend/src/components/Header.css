@@ -1,0 +1,10 @@
+.header {
+    display: flex;
+    position: relative;
+    justify-content: left;
+    left: 7%
+}
+
+h2 {
+    text-align: center;
+}

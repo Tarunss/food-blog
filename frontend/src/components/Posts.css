@@ -1,0 +1,47 @@
+.postListDiv {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 20%;
+    left: 20%;
+}
+
+.postList {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+
+}
+
+
+.posts {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.postDiv {
+    display: flex;
+    text-align: left;
+    flex: 1;
+    margin-bottom: 100px;
+
+
+}
+
+.postTitle {
+    font-size: xx-large;
+    flex: 1;
+    margin-top: 0;
+    border-top: 0;
+    padding-top: 0;
+}
+
+.postBody {
+    flex: 2;
+}
+
+.postDate {}
