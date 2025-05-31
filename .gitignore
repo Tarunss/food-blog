@@ -1,0 +1,3 @@
+auth/
+backend/.env
+frontend/.env
