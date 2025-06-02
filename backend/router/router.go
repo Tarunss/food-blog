@@ -1,6 +1,9 @@
 package router
 
 import (
+	"net/http"
+
+	"github.com/Tarunss/food-blog/auth"
 	"github.com/Tarunss/food-blog/controller"
 	"github.com/gorilla/mux"
 )
@@ -48,13 +51,13 @@ import (
 func Router() *mux.Router {
 	router := mux.NewRouter()
 	//router.HandleFunc("/ws", serveWs)
-	router.HandleFunc("/api/register", controller.Register).Methods("POST")
+	//router.HandleFunc("/api/register", controller.Register).Methods("POST")
 	router.HandleFunc("/api/login", controller.PostToken).Methods("POST")
 	router.HandleFunc("/api/posts", controller.GetAllPosts).Methods("GET")
-	router.HandleFunc("/api/post", controller.InsertOnePost).Methods("POST")
-	router.HandleFunc("/api/post/{id}", controller.UpdateOnePost).Methods("PUT")
-	router.HandleFunc("/api/post/{id}", controller.DeleteOnePost).Methods("DELETE")
-	router.HandleFunc("/api/deleteallpost", controller.DeleteAllPosts).Methods("DELETE")
+	router.Handle("/api/post", auth.AuthMiddleware(http.HandlerFunc(controller.InsertOnePost))).Methods("POST")
+	router.Handle("/api/post/{id}", auth.AuthMiddleware(http.HandlerFunc(controller.UpdateOnePost))).Methods("PUT")
+	router.Handle("/api/post/{id}", auth.AuthMiddleware(http.HandlerFunc(controller.DeleteOnePost))).Methods("DELETE")
+	router.Handle("/api/deleteallpost", auth.AuthMiddleware(http.HandlerFunc(controller.DeleteAllPosts))).Methods("DELETE")
 
 	return router
 }

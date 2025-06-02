@@ -277,8 +277,21 @@ func PostToken(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "Failed to generate token", http.StatusInternalServerError)
 		return
 	}
-	response := map[string]string{"token": token}
-	json.NewEncoder(w).Encode(response)
+	http.SetCookie(w, &http.Cookie{
+		Name:     "jwt",
+		Value:    token,
+		Expires:  time.Now().Add(24 * time.Hour), // expires in 1 day
+		HttpOnly: true,                           // prevent JS access
+		Secure:   true,                           // send only over HTTPS
+		SameSite: http.SameSiteLaxMode,           // adjust based on your CSRF policy
+		Path:     "/",                            // cookie path
+	})
+
+	// Send success response
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(map[string]string{
+		"message": "Login successful",
+	})
 }
 
 // POST request when user registers
